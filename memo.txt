@@ -7,4 +7,5 @@
     - 参考２）Qiita：「[Chart.jsでグラフを描画してみた](https://qiita.com/Haruka-Ogawa/items/59facd24f2a8bdb6d369)」
     - 参考３）ドットインストール「[Google Charts入門](https://dotinstall.com/lessons/basic_chart_tools_v2)」
       - [01_chartjs_trial](01_chartjs_trial/memo.txt)
+    - 参考４）GitHub："[kaz-ogiwara/covid19](https://github.com/kaz-ogiwara/covid19/)"
 

@@ -2,6 +2,8 @@ body {
   font-size: 14px;
   font-family: Verdana, sans-serif;
   margin: 0;
+  background-color: #061a2b;
+  color: white;
 }
 
 p {
@@ -11,4 +13,12 @@ p {
 .container {
   width: 80%;
   margin: 0 auto;
+}
+
+.board {
+  background-color: white;
+  margin: 0 auto;
+  border: black 1px solid;
+  border-radius: 20px;
+  padding: 10px 10px 20px 10px;
 }
