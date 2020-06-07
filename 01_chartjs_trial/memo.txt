@@ -1,0 +1,244 @@
+﻿# dotinstall_basic_chart_tools_v2
+# Google Charts入門
+JavaScriptで簡単にグラフが描けるGoogle Chartsの使い方について見ていきます。
+- URL: https://dotinstall.com/lessons/basic_chart_tools_v2
+
+## サンプル
+1. [PieChart](docs/01_piechart.html)
+2. [BarChart/ColumnChart](docs/02_barchart.html)
+3. [LineChart](docs/03_linechart.html)
+11. [Google Sheetのアクセス例）PieChart](docs/11_piechart_acc_glsheet.html)
+
+
+--------------------------------------------------------------------------------
+## 01 Google Chartsを使ってみよう (02:58)
+- Google Chartsの概要：JavaScriptで簡単にグラフがかけるツール
+  - 公式サイト：https://developers.google.com/chart
+- index.htmlの作成
+
+
+
+## 02 グラフ描画の準備をしよう (02:51)
+- ライブラリの読み込み
+```
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>..メイン..</script>
+```
+- 処理の流れ
+
+
+## 03 描画に必要なデータを用意しよう (02:04)
+- データの準備：テーブルデータを準備する（`data.addColumn(...)`、`data.addRows(...)`のデータ）
+- DataTable()によるデータの追加
+  - Google Chartの[get started](https://developers.google.com/chart/interactive/docs/quick_start)のサンプルに従う形でよい
+```
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+//	→　Chartsのコア機能を読み込み
+//
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+//	→　Chartsのコア機能を読み込み
+//
+      function drawChart() {
+        var target = document.querySelector('#target');
+        var data;
+        var options = {
+          titile: 'My Chart',
+          width: 500,
+          height: 300
+        };
+        var chart = new google.visualization.PieChart(target);
+        data = new google.visualization.DataTable();
+        data.addColumn('string', 'Language');
+        data.addColumn('number', 'Votes');
+        data.addRows([
+          ['PHP', 30],
+          ['Ruby', 20],
+          ['Python', 50],
+          ['Others', 10]
+        ]);
+//
+        chart.draw(data, options);
+      }
+//
+```
+
+
+## 04 データを配列で追加してみよう (01:34)
+- arrayToDataTable()によるデータの追加
+  - データの準備：`google.visualization.DataTable(...);`で一度セットする方法
+  -  前節の`data.addColumn(...)`、`data.addRows(...)`を省略できる
+  - 実装方法：
+```
+data = new google.visualization.arrayToDataTable([
+  ['Language', 'Votes'],
+  ['PHP', 30],
+  ['Ruby', 20],
+  ['Python', 50],
+  ['Others', 10]
+]);
+```
+
+
+
+## 05 オプションを指定してみよう (02:50)
+- optionsの指定：
+  - 参考：Chartsサイトの「Guide」→「PieChart」の"Configuration Options"で確認できる
+  - 方法：JavaScript内option変数にstyleを設定する
+  - 実装例：色（backgroundColor, colors）、強調(slices)、修飾（pieHole, is3D）の指定例
+```
+        var options = {
+          titile: 'My Chart',
+          width: 500,
+          height: 300,
+          // backgroundColor: グラフエリアの背景色
+          backgroundColor: '#888',
+          // colors: 各データの色指定
+          colors: ['#aaa', '#bbb', '#ccc', '#ddd'],
+          // slices: 特定のデータを目立たせる（下の例は、２番目のデータをoffset(切り出し)させる
+          slices: [1, {offset: 0.2}],
+          // pieHole: 円グラフの真ん中をあける
+          pieHole : 0.4,
+          // is3D　：　３次元表示（注：pieHoleオプションと排他で使う）
+          is3D : true,
+        };
+```
+
+
+
+## 06 棒グラフを作ってみよう (02:39)
+- 棒グラフの作成：1項目２データの棒グラフ描画
+  - 横棒グラフは、`var chart = new google.visualization.BarChart(target);`で指定
+  - 縦棒グラフは、`var chart = new google.visualization.ColumnChart(target);`で指定
+- optionsの指定：animation, isStacked　の紹介
+  - animation 指定：複数のサブオプションを一緒に指定
+  - isStacked : 積上げ指定（true/false、'percent'など）
+  - 実装例）PieChartから、dataとoptionsを変更。下はアニメ付きの100%積み上げの縦棒グラフ
+```
+        function drawChart() {
+          var target = document.querySelector("#target");
+          var data;
+          var options = {
+            titile: "My Bar Chart",
+            width: 500,
+            height: 300,
+            // animation { ... } 指定
+            // animation.duration : アニメーション期間（ミリセコンド）。下は800msで終了
+            // animation.startup  : ロード時にアニメ開始（boolean）
+            // animation.easing   : 機能指定（linear：一定速度、inAndOut: spd up and spd down　など）
+            animation: {
+              startup: true,
+              duration: 800,
+              easing: 'inAndOut'
+            }
+            isStacked: true,
+            isStacked: 'percent'
+
+            // isStacked : true (=積上げグラフ指定）
+            // isStacked : true,
+            // isStacked : 'percent' （=100%積上げ＝割合を比較できる）
+            isStacked : 'percent',
+          };
+          // 横棒グラフ
+          // var chart = new google.visualization.BarChart(target);
+          // 縦棒グラフ
+          var chart = new google.visualization.ColumnChart(target);
+          // データ指定（1項目２データでセット）
+          data = new google.visualization.arrayToDataTable([
+            ["Team", "Item-1", "Item-2"],
+            ['TeamA', 12, 38],
+            ['TeamB', 42, 18],
+            ['TeamC', 36, 11]
+          ]);
+          chart.draw(data, options);
+        }
+```
+
+## 07 折れ線グラフを作ってみよう (02:54)
+- 折れ線グラフの作成：データの推移を比較する
+  - データは、対象ごとにデータ推移を設定（下の例は、`@taguchi`さんと`koji`さんの2014-2017の(売上)推移をセット）
+- optionsの指定：ラベル(hAxiz, vAxiz）、線のタイプ(function）、値の強調（pointSize, pointShape）
+  - 実装例）
+```
+        function drawChart() {
+          var target = document.querySelector("#target");
+          var data;
+          var options = {
+            titile: "My Line Chart",
+            width: 500,
+            height: 300,
+            // options
+            hAxiz: {title: 'Year'},
+            vAxiz: {title: 'Sales'},
+            curveType: 'function',
+            pointSize: 10,
+            pointShape: 'square',
+          };
+          // 折れ線グラフ
+          var chart = new google.visualization.LineChart(target);
+          data = new google.visualization.arrayToDataTable([
+            ["Year ", "@taguchi", "koji"],
+            ["2014", 52, 89],
+            ["2015", 38, 79],
+            ["2016", 44, 88],
+            ["2017", 102, 98],
+          ]);
+          chart.draw(data, options);
+        }
+```
+
+
+## 08 Roleを使ってみよう (02:41)
+- Roleの使用：作ったグラフに説明をつける（折れ線グラフのオプション）
+  - データにコメントをつけたい場合：データの列に`{role: 'annotation'}`を追加して、データ項目に説明をつける
+    - 説明をつけるデータの後ろに`'コメント'（下では(Campain A)）`追記。つけないデータには`null`追記。
+  - データを点線にしたい場合：データ列に`{role: 'certainty'}`を追加して、データ項目にtrue/falseを指定する
+  - 実装例）
+```
+          data = new google.visualization.arrayToDataTable([
+            ["Year ", "@taguchi", {role: 'annotation'}, {role: 'certainty'}, "koji", {role: 'certainty'}],
+            ["2014", 52, null, true, 89, true],
+            ["2015", 38, 'Campain A', true, 79, true],
+            ["2016", 44, null, true, 88, true],
+            ["2017", 102,null,  false, 98, false],
+          ]);
+```
+
+
+
+## 09 スプレッドシートと連動させてみよう (02:44)
+- スプレッドシートの読み込み：Google Visualization APIでシートのデータを取得する
+```
+var query = new google.visualization.Query('リンクアドレス');
+query.send( 関数 );
+// 関数内でデータ取得と描画
+data = response.getDataTable();
+```
+- スプレッドシートの公開設定：Google Spread Sheetの右上メニュー「共有」でリンクを取得
+- 動作確認：　うまくいかなかった　（メッセージ=`Refused to execute script from '...'`）
+```
+        function drawChart() {
+          var query = new google.visualization.Query('リンクアドレス');
+          query.send(handleQueryResponse);
+        }
+        function handleQueryResponse(response){
+          var target = document.querySelector("#target");
+          var data;
+          var options = {
+            titile: "My Line Chart",
+            width: 500,
+            height: 300,
+          };
+          // 折れ線グラフ
+          var chart = new google.visualization.PieChart(target);
+          data = response.getDataTable();
+          chart.draw(data, options);
+        }
+      })();
+```
+
+
+
+--------------------------------------------------------------------------------
+

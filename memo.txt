@@ -1,0 +1,8 @@
+﻿# charts_Kanagawa_pop
+- 神奈川県の人口統計調査結果をもとに市町村割合・年ごと推移をグラフにする。
+  - 参照）神奈川県HP「[人口統計・国勢調査](https://www.pref.kanagawa.jp/menu/6/26/140/index.html)」
+
+  - 利用ライブラリ：Chart.js
+    - 参考）ドットインストール「[Google Charts入門](https://dotinstall.com/lessons/basic_chart_tools_v2)」
+      - [01_chartjs_trial](01_chartjs_trial/memo.txt)
+
