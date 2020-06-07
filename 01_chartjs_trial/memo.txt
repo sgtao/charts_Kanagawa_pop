@@ -7,7 +7,6 @@ JavaScriptで簡単にグラフが描けるGoogle Chartsの使い方について
 1. [PieChart](docs/01_piechart.html)
 2. [BarChart/ColumnChart](docs/02_barchart.html)
 3. [LineChart](docs/03_linechart.html)
-11. [Google Sheetのアクセス例）PieChart](docs/11_piechart_acc_glsheet.html)
 
 
 --------------------------------------------------------------------------------
