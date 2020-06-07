@@ -19,21 +19,32 @@
       (function () {
         "use strict";
 
+        // data設定
+        const bar_datasets = {
+          data_labels: ["TeamA", "TeamB", "TeamC"],
+          datasets: [
+              [12, 42, 36],
+              [38, 18, 11]],
+          item_labels: ["Item-1", "Item-2"],
+          colors: ["#FAFF67", "#BB5179"],
+        };
+
+        // chart描画
         var ctx = document.querySelector("#target").getContext("2d");
         var stackedBar = new Chart(ctx, {
           type: "bar",
           data: {
-            labels: ["TeamA", "TeamB", "TeamC"],
+            labels: bar_datasets.data_labels,
             datasets: [
               {
-                label: "Item-1",
-                data: [12, 42, 36],
-                backgroundColor: "#FAFF67",
+                label:  bar_datasets.item_labels[0],
+                data:   bar_datasets.datasets[0],
+                backgroundColor: bar_datasets.colors[0]
               },
               {
-                label: "Item-2",
-                data: [38, 18, 11],
-                backgroundColor: "#BB5179",
+                label:  bar_datasets.item_labels[1],
+                data:   bar_datasets.datasets[1],
+                backgroundColor: bar_datasets.colors[1]
               },
             ],
           },

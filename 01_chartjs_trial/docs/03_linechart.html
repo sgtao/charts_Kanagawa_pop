@@ -4,55 +4,60 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chart Tools（Line Chart）</title>
-    <link type="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/Chart.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <h1>Chart Tools（Line Chart）</h1>
     <div class="container">
       <div class="board">
-        <div id="target"></div>
+        <canvas id="target"></canvas>
       </div>
     </div>
-    <script
-      type="text/javascript"
-      src="https://www.gstatic.com/charts/loader.js"
-    ></script>
+    <script type="text/javascript" src="js/Chart.bundle.js"></script>
     <script type="text/javascript">
       (function () {
         "use strict";
 
-        // Load the Visualization API and the corechart package.
-        google.charts.load("current", { packages: ["corechart"] });
+        // data設定
+        const line_datasets = {
+          data_labels: ["2014", "2015", "2016", "2017"],
+          datasets: [
+              [52, 38, 44, 102],
+              [89, 79, 88,  98]],
+          item_labels: ["@taguchi", "koji"],
+          colors: ["blue", "red"],
+        };
 
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-          var target = document.querySelector("#target");
-          var data;
-          var options = {
-            titile: "My Line Chart",
-            width: 500,
-            height: 300,
-            // options
-            hAxiz: {title: 'Year'},
-            vAxiz: {title: 'Sales'},
-            // curveType: 'function',
-            curveType: 'none',
-            pointSize: 10,
-            pointShape: 'square',
-          };
-          // 折れ線グラフ
-          var chart = new google.visualization.LineChart(target);
-          data = new google.visualization.arrayToDataTable([
-            ["Year ", "@taguchi", {role: 'annotation'}, {role: 'certainty'}, "koji", {role: 'certainty'}],
-            ["2014", 52, null, true, 89, true],
-            ["2015", 38, 'Campain A', true, 79, true],
-            ["2016", 44, null, true, 88, true],
-            ["2017", 102,null,  false, 98, false],
-          ]);
-          chart.draw(data, options);
-        }
+        // chart描画
+        var ctx = document.querySelector("#target").getContext("2d");
+        var lineChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: line_datasets.data_labels,
+            datasets: [
+              {
+                label: line_datasets.item_labels[0],
+                data:  line_datasets.datasets[0],
+                borderColor: line_datasets.colors[0]
+              },
+              {
+                label: line_datasets.item_labels[1],
+                data:  line_datasets.datasets[1],
+                borderColor: line_datasets.colors[1]
+              },
+            ],
+          },
+          options: {
+            title: {
+              display: true,
+              text: "My Line Chart",
+            },
+            elements: {
+              line: {tension: 0, } // ベジェ曲線を無効にする
+            }
+          },
+        });
       })();
     </script>
   </body>

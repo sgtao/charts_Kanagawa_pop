@@ -4,6 +4,7 @@ body {
   margin: 0;
   background-color: #061a2b;
   color: white;
+  position: relative;
 }
 
 p {
@@ -21,4 +22,19 @@ p {
   border: black 1px solid;
   border-radius: 20px;
   padding: 10px 10px 20px 10px;
+  position: relative;
+}
+
+.board p {
+   position: absolute;
+   top: 0;
+   left: 0;
+   margin: auto;
+   right: 0;
+   margin: auto;
+   text-align: center;
+   top: 50%;
+   -webkit-transform: translateY(-50%);
+   transform: translateY(-30%); 
+   color: black;
 }

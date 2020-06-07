@@ -12,6 +12,7 @@
     <div class="container">
       <div class="board">
         <canvas id="target"></canvas>
+        <p id="target-total">Total Votes. <br>= </p>
       </div>
     </div>
     <script type="text/javascript" src="js/Chart.bundle.js"></script>
@@ -19,16 +20,24 @@
       (function () {
         "use strict";
 
+        // data設定
+        const pie_datasets = {
+          data_labels: ["PHP", "Ruby", "Python", "Others"],
+          colors: ["#BB5179", "#FAFF67", "#58A27C", "#3C00FF"],
+          datasets: [30, 20, 50, 10],
+        };
+
+        // chart描画
         var ctx = document.querySelector("#target").getContext("2d");
         var myPieChart = new Chart(ctx, {
           // type: 'pie',
           type: "doughnut",
           data: {
-            labels: ["PHP", "Ruby", "Python", "Others"],
+            labels: pie_datasets.data_labels,
             datasets: [
               {
-                backgroundColor: ["#BB5179", "#FAFF67", "#58A27C", "#3C00FF"],
-                data: [30, 20, 50, 10],
+                backgroundColor: pie_datasets.colors,
+                data: pie_datasets.datasets,
               },
             ],
           },
@@ -39,6 +48,12 @@
             },
           },
         });
+
+        // ラベル追記
+        var target_total = document.querySelector("#target-total");
+        let total = 0;
+        for (let i of pie_datasets.datasets) { total += i; console.log(i)}
+        target_total.textContent += total;
       })();
     </script>
   </body>
