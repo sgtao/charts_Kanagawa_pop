@@ -4,56 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chart Tools（Bar Chart）</title>
-    <link type="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/Chart.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <h1>Chart Tools（Bar Chart）</h1>
     <div class="container">
       <div class="board">
-        <div id="target"></div>
+        <canvas id="target"></canvas>
       </div>
     </div>
-    <script
-      type="text/javascript"
-      src="https://www.gstatic.com/charts/loader.js"
-    ></script>
+    <script type="text/javascript" src="js/Chart.bundle.js"></script>
     <script type="text/javascript">
       (function () {
         "use strict";
 
-        // Load the Visualization API and the corechart package.
-        google.charts.load("current", { packages: ["corechart"] });
-
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-          var target = document.querySelector("#target");
-          var data;
-          var options = {
-            titile: "My Bar Chart",
-            width: 500,
-            height: 300,
-            animation: {
-              startup: true,
-              duration: 800,
-              easing: 'inAndOut'
+        var ctx = document.querySelector("#target").getContext("2d");
+        var stackedBar = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["TeamA", "TeamB", "TeamC"],
+            datasets: [
+              {
+                label: "Item-1",
+                data: [12, 42, 36],
+                backgroundColor: "#FAFF67",
+              },
+              {
+                label: "Item-2",
+                data: [38, 18, 11],
+                backgroundColor: "#BB5179",
+              },
+            ],
+          },
+          options: {
+            title: {
+              display: true,
+              text: "My Bar Chart",
             },
-            isStacked : true,
-            // isStacked : 'percent',
-          };
-          // 横棒グラフ
-          // var chart = new google.visualization.BarChart(target);
-          // 縦棒グラフ
-          var chart = new google.visualization.ColumnChart(target);
-          data = new google.visualization.arrayToDataTable([
-            ["Team", "Item-1", "Item-2"],
-            ['TeamA', 12, 38],
-            ['TeamB', 42, 18],
-            ['TeamC', 36, 11]
-          ]);
-          chart.draw(data, options);
-        }
+            scales: {
+              xAxes: [
+                {
+                  stacked: true,
+                },
+              ],
+              yAxes: [
+                {
+                  stacked: true,
+                  ticks: {
+                      beginAtZero: true,
+                      min: 0
+                  }
+                },
+              ],
+            },
+          },
+        });
       })();
     </script>
   </body>
