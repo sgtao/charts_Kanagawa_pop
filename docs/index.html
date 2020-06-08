@@ -1,14 +1,63 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>charts_Kanagawa_pop</title>
-</head>
-<body>
-  <div class="global_container">
-    <h1>charts_Kanagawa_pop</h1>
-    <p>神奈川県の人口統計調査結果をもとに市町村割合・年ごと推移をグラフにする。</p>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>charts_Kanagawa_pop</title>
+    <link rel="stylesheet" href="css/Chart.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="global_container">
+      <h1>charts_Kanagawa_pop</h1>
+      <p>
+        神奈川県の人口統計調査結果をもとに市町村割合・年ごと推移をグラフにする。
+      </p>
+      <p>利用パッケージ：Chart.js</p>
+      <hr />
+      <div class="container">
+        <div class="kengaiyou">
+          <p>地域別　人口一覧（令和２年5月1日）</p>
+          <table>
+            <tr>
+              <td>地区名</td>	<td>市町村名</td>	<td>地域人口[人]</td>	<td>行政区域面積[㎢]</td>	<td>人口密度[人/㎢]</td>
+            </tr>
+            <tr>
+              <td>横浜地域</td>	<td>横浜市</td>	<td>3,760,467</td>	<td>437.56</td>	<td>8,594</td>
+            </tr>
+            <tr>
+              <td>川崎地域</td>	<td>川崎市</td>	<td>1,539,284</td>	<td>143.01</td>	<td>10,763</td>
+            </tr>
+            <tr>
+              <td>横須賀三浦地域</td>	<td>横須賀市、鎌倉市、逗子市、三浦市、葉山町</td>	<td>696,443</td>	<td>206.86</td>	<td>3,367</td>
+            </tr>
+            <tr>
+              <td>県央地域</td>	<td>相模原市、厚木市、大和市、海老名市、座間市、綾瀬市、愛川町、清川村</td>	<td>1,579,555</td>	<td>621.66</td>	<td>2,541</td>
+            </tr>
+            <tr>
+              <td>湘南地域</td>	<td>平塚市、藤沢市、茅ヶ崎市、秦野市、伊勢原市、寒川町、大磯町、二宮町</td>	<td>1,309,961</td>	<td>372.18</td>	<td>3,520</td>
+            </tr>
+            <tr>
+              <td>県西地域</td>	<td>小田原市、南足柄市、中井町、大井町、松田町、山北町、開成町、箱根町、真鶴町、湯河原町</td>	<td>336,908</td>	<td>635.09</td>	<td>530</td>
+            </tr>
+            <tr style="font-size: larger;">
+              <td></td>	<td>神奈川県内の全市区町村の合計</td>	<td>9,222,618</td>	<td>2,416</td>	<td>3,817</td>
+            </tr>
+          </table>
+        </div>
+      <div class="chartboard">
+        <canvas id="target-pop-pichart"></canvas>
+        <p id="target-total">Total pop. <br>= </p>
+      </div>
+      <div class="chartboard">
+        <canvas id="target-area-pichart"></canvas>
+        <p id="target-total">Total area <br>= </p>
+      </div>
+     </div>
+      <hr />
+      <footer>Copyright &copy; sgtao.github.io all right reserved</footer>
+    </div>
+    <script type="text/javascript" src="js/Chart.bundle.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
 </html>
