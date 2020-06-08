@@ -45,27 +45,33 @@
               <td>県西地域</td>	<td>小田原市、南足柄市、中井町、大井町、松田町、山北町、開成町、箱根町、真鶴町、湯河原町</td>	<td>336,908</td>	<td>635.09</td>	<td>530</td>
             </tr>
             <tr style="font-size: larger;">
-              <td></td>	<td>神奈川県内の全市区町村の合計</td>	<td>9,222,618</td>	<td>2,416</td>	<td>3,817</td>
+              <td colspan=2>神奈川県内の全市区町村の合計</td>	<td>9,222,618</td>	<td>2,416</td>	<td>3,817</td>
             </tr>
           </table>
         </div>
-      <div class="chartboard">
-        <canvas id="target-pop-pichart"></canvas>
-        <p id="target-pop-total" class="piechart-total">Total pop. <br>= </p>
+        <!-- // 人口割合の円グラフ -->
+        <div class="chartboard">
+          <canvas id="target-pop-pichart"></canvas>
+          <p id="target-pop-total" class="piechart-total">Total pop. <br>= </p>
+        </div>
+        <!-- // 行政区域面積の割合 -->
+        <div class="chartboard">
+          <canvas id="target-area-pichart"></canvas>
+          <p id="target-area-total" class="piechart-total">Total area <br>= </p>
+        </div>
+        <!-- // 人口密度の棒グラフ -->
+        <div class="chartboard">
+          <canvas id="target-density-barchart"></canvas>
+        </div>
+        <!-- // 人口推移の折れ線グラフ -->
+        <div class="chartboard">
+          <canvas id="target-totalpop-linechart"></canvas>
+        </div>
       </div>
-      <div class="chartboard">
-        <canvas id="target-area-pichart"></canvas>
-        <p id="target-area-total" class="piechart-total">Total area <br>= </p>
-      </div>
-      <div class="chartboard">
-        <canvas id="target-density-barchart"></canvas>
-      </div>
-      <div class="chartboard">
-        <canvas id="target-totalpop-linechart"></canvas>
-      </div>
-     </div>
       <hr />
-      <footer>Copyright &copy; sgtao.github.io all right reserved</footer>
+      <footer>
+        <p>Copyright © 2020 <a href="https://github.com/sgtao/" target="_blank">sgtao.github.io</a> All Rights Reserved.</p>
+      </footer>
     </div>
     <script type="text/javascript" src="js/Chart.bundle.js"></script>
     <script type="text/javascript" src="js/main.js"></script>

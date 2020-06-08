@@ -104,8 +104,6 @@ function draw_3lines_chart(ctx, chart_title, line_datasets) {
   });
 }
 
-
-
 // 人口割合の円グラフ
 var pop_pichart_ctx = document.querySelector("#target-pop-pichart").getContext("2d");
 const pop_datasets = {
@@ -119,7 +117,7 @@ var target_pop_total = document.querySelector("#target-pop-total");
 show_target_total(target_pop_total, pop_datasets.datasets);
 
 
-// 面積割合の円グラフ
+// 行政区域面積の割合
 var area_pichart_ctx = document.querySelector("#target-area-pichart").getContext("2d");
 const area_datasets = {
   data_labels: area_array,
