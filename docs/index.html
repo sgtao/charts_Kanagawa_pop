@@ -13,6 +13,10 @@
       <p>
         神奈川県の人口統計調査結果をもとに市町村割合・年ごと推移をグラフにする。
       </p>
+      <p>参照データ：
+        <a href="https://www.pref.kanagawa.jp/menu/6/26/140/index.html" target="_blank">神奈川県：人口統計・国勢調査</a>、
+        <a href="https://www.pref.kanagawa.jp/docs/v2x/cnt/f6833/30youran.html" target="_blank">神奈川県：平成30年度市町村要覧</a>、
+      </p>
       <p>利用パッケージ：Chart.js</p>
       <hr />
       <div class="container">
@@ -47,11 +51,14 @@
         </div>
       <div class="chartboard">
         <canvas id="target-pop-pichart"></canvas>
-        <p id="target-total">Total pop. <br>= </p>
+        <p id="target-pop-total" class="piechart-total">Total pop. <br>= </p>
       </div>
       <div class="chartboard">
         <canvas id="target-area-pichart"></canvas>
-        <p id="target-total">Total area <br>= </p>
+        <p id="target-area-total" class="piechart-total">Total area <br>= </p>
+      </div>
+      <div class="chartboard">
+        <canvas id="target-density-barchart"></canvas>
       </div>
      </div>
       <hr />
