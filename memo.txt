@@ -18,9 +18,9 @@
 --------
 ## trial charts.js
 - try to use charts.js
-  1. [Pie Charts](docs/01_chartjs_trial/docs/01_piechart.html)
-  2. [Bar Charts](docs/01_chartjs_trial/docs/02_barchart.html)
-  3. [Line Charts](docs/01_chartjs_trial/docs/03_linechart.html)
+  1. [Pie Charts](docs/99_trial_chartjs/docs/01_piechart.html)
+  2. [Bar Charts](docs/99_trial_chartjs/docs/02_barchart.html)
+  3. [Line Charts](docs/99_trial_chartjs/docs/03_linechart.html)
 
 ---------
 
