@@ -65,8 +65,45 @@ function draw_bar_chart(ctx, chart_title, bar_datasets) {
       },
     },
   });
-
 }
+
+// 折れ線グラフの描画
+function draw_3lines_chart(ctx, chart_title, line_datasets) {
+  var lineChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: line_datasets.data_labels,
+      datasets: [
+        {
+          label: line_datasets.item_labels[0],
+          data: line_datasets.datasets[0],
+          borderColor: line_datasets.colors[0]
+        },
+        {
+          label: line_datasets.item_labels[1],
+          data: line_datasets.datasets[1],
+          borderColor: line_datasets.colors[1]
+        },
+        {
+          label: line_datasets.item_labels[2],
+          data: line_datasets.datasets[2],
+          borderColor: line_datasets.colors[2]
+        },
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+        text: chart_title,
+        fontColor: 'rgb(255, 255, 255)',
+      },
+      elements: {
+        line: { tension: 0, } // ベジェ曲線を無効にする
+      }
+    },
+  });
+}
+
 
 
 // 人口割合の円グラフ
@@ -103,3 +140,18 @@ const density_datasets = {
   colors: [cTable[0], cTable[1], cTable[2], cTable[3], cTable[4], cTable[5]],
 };
 draw_bar_chart(density_barchart_ctx, "人口密度[人/㎢]", density_datasets);
+
+
+// 人口推移の折れ線グラフ
+var totalpop_linechart_ctx = document.querySelector("#target-totalpop-linechart").getContext("2d");
+const total_pop_datasets = {
+  data_labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+  datasets: [
+    [9163279, 9160412, 9157211, 9161113, 9177834, 9180700, 9181389, 9180457, 9179666, 9179835, 9183257, 9182071],
+    [9181625, 9178503, 9175042, 9180510, 9197925, 9199871, 9199590, 9199389, 9199037, 9200166, 9203069, 9202523],
+    [9201825, 9198646, 9196411, 9204965, 9222618, , , , , , , ],
+  ],
+  item_labels: ['2018年', '2019年', '2020年'],
+  colors: ['green', 'red', 'blue'],
+};
+draw_3lines_chart(totalpop_linechart_ctx, "神奈川県総人口[人]", total_pop_datasets);
