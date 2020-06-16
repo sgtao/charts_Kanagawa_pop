@@ -3,7 +3,7 @@ body {
   font-family: Verdana, sans-serif;
   margin: 0 auto;
   /* background-color: #061a2b; */
-  background-color:#0c3152;
+  background-color: #081e31;
   color: white;
   position: relative;
 }
@@ -33,7 +33,7 @@ table th, table td{
 }
 
 .kengaiyou, .chartboard {
-  background-color: #061a2b;
+  background-color:#0c3152;
   color: white;
   margin: 10px auto;
   border: black 1px solid;
